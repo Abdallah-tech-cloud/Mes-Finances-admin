@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0E7C66">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self' https://*.supabase.co; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'self'; object-src 'none'">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>Mes Finances</title>
+<meta name="description" content="Mes Finances : suivez vos dépenses, recettes et épargne (Orange Money, Wave, Yas Money) dans votre navigateur. Vos données sont enregistrées dans votre compte.">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<noscript><p style="padding:24px;font-family:sans-serif">Mes Finances a besoin de JavaScript pour fonctionner.</p></noscript>
+<!--APP-START-->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-logo" viewBox="0 0 380 380">
+    <clipPath id="lgClip"><rect width="380" height="380" rx="84"/></clipPath>
+    <g clip-path="url(#lgClip)">
+      <rect width="380" height="380" fill="#0F3D5C"/>
+      <rect width="380" height="380" fill="#124A6E" opacity="0.6"/>
+      <rect x="95" y="140" width="190" height="130" rx="18" fill="#F1EFE8"/>
+      <rect x="95" y="140" width="190" height="34" rx="18" fill="#E3E1D8"/>
+      <path d="M95 158V128C95 116 104 108 116 110L250 132C262 134 269 144 267 156L263 174Z" fill="#D85A30"/>
+      <circle cx="245" cy="205" r="26" fill="#EF9F27"/>
+      <circle cx="245" cy="205" r="15" fill="#FAD28C"/>
+      <path d="M110 232L140 202L160 220L198 182" fill="none" stroke="#5DCAA5" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      <polygon points="198,168 224,178 196,202" fill="#5DCAA5"/>
+    </g>
+  </symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></symbol>
+  <symbol id="i-add" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M21.2 15.9A10 10 0 1 1 8 2.8"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 6h8M18 6h2M4 12h2M12 12h8M4 18h10M20 18h0"/><circle cx="15" cy="6" r="2.2"/><circle cx="9" cy="12" r="2.2"/><circle cx="17" cy="18" r="2.2"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4.5-6 8-6s7 2 8 6"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-delete" viewBox="0 0 24 24"><path d="M21 5H9l-6 7 6 7h12z"/><path d="m12 9 5 6m0-6-5 6"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></symbol>
+  <symbol id="i-logout" viewBox="0 0 24 24"><path d="M9 4H5v16h4M16 8l4 4-4 4M20 12H9"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M16 7l3 3"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.5 3.2-5.5 6.5-5.5s5.9 2 6.5 5.5"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14.5c2.4.2 4 1.8 4.5 4.5"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/><path d="M3 4h2l2.4 11h11l2-8H6.2"/></symbol>
+  <symbol id="i-bus" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="14" rx="3"/><path d="M4 11h16M8 17v3M16 17v3"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 0 0-7.1 7.1L12 21.5l8.8-8.8a5 5 0 0 0 0-7.1z"/></symbol>
+  <symbol id="i-game" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="10" rx="4"/><path d="M8 10v4M6 12h4"/><circle cx="16" cy="11" r=".8"/><circle cx="18" cy="13" r=".8"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
+  <symbol id="i-cash" viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M20 7H5a2 2 0 0 1 0-4h13v4"/><path d="M3 5v14a2 2 0 0 0 2 2h15V7"/><circle cx="16.5" cy="14" r="1.2"/></symbol>
+  <symbol id="i-dots" viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="18" cy="12" r="1.3"/></symbol>
+</svg>
+
+<div class="app mob" id="app">
+
+  <header class="topbar">
+    <svg class="logo" aria-hidden="true"><use href="#i-logo"/></svg>
+    <span class="brand-name">Mes Finances</span>
+    <button class="avatar-btn" data-click="showScreen|profile" aria-label="Mon profil"><span class="av" data-av></span></button>
+  </header>
+
+  <nav class="nav" aria-label="Navigation principale">
+    <div class="nav-brand"><svg class="logo" aria-hidden="true"><use href="#i-logo"/></svg>Mes Finances</div>
+    <button class="on" data-s="home" data-click="showScreen|home"><svg class="ic" aria-hidden="true"><use href="#i-home"/></svg><span>Accueil</span></button>
+    <button data-s="add" data-click="showScreen|add"><svg class="ic" aria-hidden="true"><use href="#i-add"/></svg><span>Ajouter</span></button>
+    <button data-s="stats" data-click="showScreen|stats"><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg><span>Stats</span></button>
+    <button data-s="goals" data-click="showScreen|goals"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg><span>Objectifs</span></button>
+    <button data-s="settings" data-click="showScreen|settings"><svg class="ic" aria-hidden="true"><use href="#i-sliders"/></svg><span>Réglages</span></button>
+    <button class="nav-admin" id="navAdmin" data-s="admin" data-click="showScreen|admin" hidden><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg><span>Administration</span></button>
+    <button class="nav-profile" data-s="profile" data-click="showScreen|profile"><span class="av" data-av></span><span class="np-text"><b id="npName">Mon profil</b><small id="npSchool">Personnaliser</small></span></button>
+  </nav>
+
+  <main class="content" id="content">
+    <div class="banner" id="banner" hidden role="alert"><span id="bannerText"></span><button class="btn-sm" data-click="retryLoad">Réessayer</button></div>
+
+    <section class="screen active" id="screen-home">
+      <div class="greet" id="greet" hidden><p class="greet-hi" id="greetHi"></p><p class="greet-sub" id="greetSub"></p></div>
+      <div class="home-grid">
+        <div>
+          <div class="hero">
+            <div class="hero-row">
+              <div><p class="hero-label">Solde total</p><h1 class="hero-balance" id="totalBalance">0 F</h1></div>
+              <button class="hero-add" data-click="showScreen|add" aria-label="Ajouter une transaction"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
+            </div>
+            <div class="hero-sub">
+              <div><p>Dépenses du mois</p><p id="monthExp">0 F</p></div>
+              <div><p>Recettes du mois</p><p id="monthInc">0 F</p></div>
+            </div>
+          </div>
+          <div class="accounts-row" id="accountsRow"></div>
+          <div class="card">
+            <div class="goal-head"><h3>Objectif épargne</h3><span id="goalSub"></span></div>
+            <div class="track"><div class="fill" id="goalFill"></div></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Transactions récentes</h3>
+          <div id="txList"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-add">
+      <h2 class="screen-title">Nouvelle transaction</h2>
+      <div class="type-row">
+        <button class="type-btn sel-exp" id="type-expense" aria-pressed="true" data-click="selectType|expense">Dépense</button>
+        <button class="type-btn" id="type-income" aria-pressed="false" data-click="selectType|income">Recette</button>
+      </div>
+      <label class="field-label" for="amountInput">Montant (F CFA)</label>
+      <input class="input" id="amountInput" type="number" placeholder="0" inputmode="decimal">
+      <p class="field-label">Compte</p>
+      <div class="chips" id="accountChips"></div>
+      <p class="field-label">Catégorie</p>
+      <div class="chips" id="categoryChips"></div>
+      <label class="field-label" for="noteInput">Note (optionnel)</label>
+      <input class="input" id="noteInput" type="text" placeholder="Ex : marché, taxi...">
+      <button class="btn" data-click="submitTransaction">Enregistrer</button>
+    </section>
+
+    <section class="screen" id="screen-stats">
+      <h2 class="screen-title">Statistiques</h2>
+      <div class="kpis" id="kpis"></div>
+      <div class="charts">
+        <div class="card">
+          <div class="card-head">
+            <h3>Répartition des dépenses</h3>
+            <div class="mini-seg">
+              <button id="per-month" class="on" data-click="setPeriod|month">Ce mois</button>
+              <button id="per-6m" data-click="setPeriod|6m">6 mois</button>
+            </div>
+          </div>
+          <div class="donut-wrap"><div id="donut"></div><ul class="legend" id="legend"></ul></div>
+        </div>
+        <div class="card">
+          <div class="card-head">
+            <h3>Recettes et dépenses</h3>
+            <div class="key"><span><i style="background:var(--primary)"></i>Recettes</span><span><i style="background:var(--danger)"></i>Dépenses</span></div>
+          </div>
+          <div id="bars"></div>
+        </div>
+        <div class="card span2">
+          <div class="card-head"><h3>Évolution du solde</h3></div>
+          <div id="line"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-goals">
+      <h2 class="screen-title">Objectif d'épargne</h2>
+      <div class="goal-hero">
+        <p class="goal-percent" id="goalPercentBig">0%</p>
+        <div class="track on-dark"><div class="fill" id="goalFillBig"></div></div>
+        <p id="goalSubBig"></p>
+      </div>
+      <label class="field-label" for="goalTargetInput">Objectif à atteindre (F CFA)</label>
+      <input class="input" id="goalTargetInput" type="number">
+      <label class="field-label" for="goalSavedInput">Montant déjà épargné (F CFA)</label>
+      <input class="input" id="goalSavedInput" type="number">
+      <button class="btn" data-click="updateGoal">Mettre à jour</button>
+    </section>
+
+    <section class="screen" id="screen-admin">
+      <h2 class="screen-title">Espace administrateur</h2>
+      <p class="admin-note"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg><span>Vous voyez des données de gestion (comptes, nombres, dates), jamais les montants ni les notes des transactions. Chaque suspension ou suppression est enregistrée dans un journal.</span></p>
+      <div class="mini-seg admin-tabs" role="tablist" aria-label="Sections de l'administration">
+        <button id="atab-dash" class="on" role="tab" aria-selected="true" data-click="adminTab|dash">Tableau de bord</button>
+        <button id="atab-users" role="tab" aria-selected="false" data-click="adminTab|users">Comptes</button>
+        <button id="atab-log" role="tab" aria-selected="false" data-click="adminTab|log">Journal</button>
+      </div>
+      <div id="admin-dash">
+        <div class="kpis kpis4" id="adminKpis"></div>
+        <div class="charts">
+          <div class="card"><div class="card-head"><h3>Inscriptions (14 jours)</h3></div><div id="adminSignups"></div></div>
+          <div class="card"><div class="card-head"><h3>Transactions saisies (14 jours)</h3></div><div id="adminTx"></div></div>
+          <div class="card span2"><div class="card-head"><h3>Comptes par établissement</h3></div><div class="donut-wrap"><div id="adminDonut"></div><ul class="legend" id="adminLegend"></ul></div></div>
+        </div>
+      </div>
+      <div id="admin-users" hidden>
+        <label class="field-label" for="adminSearch">Rechercher par adresse e-mail</label>
+        <input class="input" id="adminSearch" type="search" maxlength="80" placeholder="Ex : awa" autocomplete="off" data-input="adminSearch">
+        <p class="hint" id="adminCount"></p>
+        <div id="adminUsers"></div>
+        <button class="btn" id="adminMore" hidden data-click="adminMore">Charger plus</button>
+      </div>
+      <div id="admin-log" hidden><div class="card"><div id="adminLog"></div></div></div>
+    </section>
+
+    <section class="screen" id="screen-account">
+      <button class="back" data-click="showScreen|settings"><svg class="ic" aria-hidden="true"><use href="#i-left"/></svg>Réglages</button>
+      <h2 class="screen-title">Mon compte</h2>
+      <div class="card acct-card"><h3>Connecté en tant que</h3><p class="acct-email" id="acctEmail2"></p></div>
+      <div class="list">
+        <button data-click="startPasswordChange"><svg class="ic" aria-hidden="true"><use href="#i-key"/></svg><span>Changer le mot de passe</span><svg class="ic chev" aria-hidden="true"><use href="#i-right"/></svg></button>
+        <button data-click="signOutNow"><svg class="ic" aria-hidden="true"><use href="#i-logout"/></svg><span>Se déconnecter</span></button>
+      </div>
+      <div class="card" id="importBox" hidden>
+        <h3>Données de cet appareil</h3>
+        <p class="hint" id="importText"></p>
+        <button class="btn" data-click="importLocal">Importer dans mon compte</button>
+        <button class="btn ghost" data-click="discardLocal">Effacer les données de cet appareil</button>
+      </div>
+      <p class="group-title">Zone sensible</p>
+      <div class="card danger-zone">
+        <h3>Supprimer mon compte</h3>
+        <p class="hint">Cette action efface définitivement votre compte, vos transactions, votre objectif et votre profil. Exportez vos données en CSV avant (Réglages, puis Données).</p>
+        <label class="field-label" for="delConfirm">Tapez SUPPRIMER pour confirmer</label>
+        <input class="input" id="delConfirm" autocomplete="off" autocapitalize="characters" data-input="delCheck">
+        <button class="btn danger" id="delBtn" disabled data-click="deleteAccount">Supprimer définitivement mon compte</button>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-profile">
+      <h2 class="screen-title">Mon profil</h2>
+      <div class="profile-grid">
+        <div>
+          <div class="idcard">
+            <div class="idcard-top"><span id="idSchool">Mon établissement</span><span class="idcard-year" id="idYear"></span></div>
+            <div class="idcard-body"><span class="av av-lg" data-av></span><div><p class="idcard-name" id="idName">Prénom</p><p class="idcard-class" id="idClass"></p></div></div>
+            <div class="idcard-strip"></div>
+          </div>
+          <p class="hint">Aperçu de votre carte de profil aux couleurs de l'établissement. Ce n'est pas un document officiel.</p>
+        </div>
+        <div class="pform">
+          <label for="pFirst">Prénom</label>
+          <input class="input" id="pFirst" maxlength="30" placeholder="Ex : Awa" data-input="setField|first">
+          <label for="pLast">Nom (optionnel)</label>
+          <input class="input" id="pLast" maxlength="30" placeholder="Ex : Diop" data-input="setField|last">
+          <label for="pSchool">Établissement</label>
+          <select class="input" id="pSchool" data-change="setSchool"></select>
+          <div id="customBox" hidden>
+            <label for="pSchoolName">Nom de l'établissement</label>
+            <input class="input" id="pSchoolName" maxlength="60" placeholder="Ex : Lycée de ma ville" data-input="setField|schoolName">
+            <p class="field-label">Couleurs de la charte graphique</p>
+            <div class="colors">
+              <label>Principale<input type="color" id="cDark" data-input="setColor|dark"></label>
+              <label>Secondaire<input type="color" id="cLight" data-input="setColor|light"></label>
+              <label>Texte<input type="color" id="cInk" data-input="setColor|ink"></label>
+            </div>
+          </div>
+          <label for="pClass">Classe</label>
+          <select class="input" id="pClass" data-change="setField|classe"></select>
+          <label for="pYear">Année scolaire</label>
+          <input class="input" id="pYear" maxlength="9" placeholder="2026-2027" data-input="setField|year">
+          <p class="field-label">Photo (facultatif)</p>
+          <div class="photo-row">
+            <span class="av av-md" data-av></span>
+            <label class="btn-sm">Choisir une photo<input type="file" id="pPhoto" accept="image/*" hidden data-change="pickPhoto"></label>
+            <button class="btn-sm" data-click="removePhoto">Retirer</button>
+          </div>
+          <p class="field-label">Charte graphique</p>
+          <div class="swatches" id="swatches"></div>
+          <label class="switch-row"><input type="checkbox" id="pUse" data-change="setUseCharter"><span>Appliquer les couleurs de l'établissement à l'application</span></label>
+          <button class="btn ghost" data-click="resetProfile">Effacer le profil</button>
+          <p class="hint">Enregistré automatiquement, uniquement sur cet appareil.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-settings">
+      <h2 class="screen-title">Réglages</h2>
+      <p class="group-title">Compte</p>
+      <div class="list">
+        <button data-click="showScreen|account"><svg class="ic" aria-hidden="true"><use href="#i-key"/></svg><span id="acctEmail">Mon compte</span><svg class="ic chev" aria-hidden="true"><use href="#i-right"/></svg></button>
+      </div>
+      <div id="adminGroup" hidden>
+        <p class="group-title">Administration</p>
+        <div class="list">
+          <button data-click="showScreen|admin"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg><span>Espace administrateur</span><svg class="ic chev" aria-hidden="true"><use href="#i-right"/></svg></button>
+        </div>
+      </div>
+      <p class="group-title">Profil</p>
+      <div class="list">
+        <button data-click="showScreen|profile"><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg><span>Profil et personnalisation</span><svg class="ic chev" aria-hidden="true"><use href="#i-right"/></svg></button>
+      </div>
+      <p class="group-title">Sécurité</p>
+      <div class="list">
+        <button data-click="showScreen|security"><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg><span>Code de verrouillage</span><small class="status" id="pinStatus">Désactivé</small><svg class="ic chev" aria-hidden="true"><use href="#i-right"/></svg></button>
+      </div>
+      <p class="group-title">Apparence</p>
+      <div class="list">
+        <button data-click="selectAppearance|system"><svg class="ic" aria-hidden="true"><use href="#i-monitor"/></svg><span>Automatique</span><svg class="ic check" id="chk-system" aria-hidden="true"><use href="#i-check"/></svg></button>
+        <button data-click="selectAppearance|light"><svg class="ic" aria-hidden="true"><use href="#i-sun"/></svg><span>Clair</span><svg class="ic check" id="chk-light" aria-hidden="true"><use href="#i-check"/></svg></button>
+        <button data-click="selectAppearance|dark"><svg class="ic" aria-hidden="true"><use href="#i-moon"/></svg><span>Sombre</span><svg class="ic check" id="chk-dark" aria-hidden="true"><use href="#i-check"/></svg></button>
+      </div>
+      <p class="group-title">Données</p>
+      <div class="list">
+        <button data-click="exportCSV"><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg><span>Exporter mes transactions (CSV)</span></button>
+      </div>
+      <p class="hint">Vos données sont enregistrées dans votre compte et protégées par votre mot de passe.</p>
+      <div class="list" id="installBox" hidden><button data-click="installApp"><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg><span>Installer l'application</span></button></div>
+      <p class="hint">Pour installer : menu du navigateur, puis « Installer l'application » ou « Ajouter à l'écran d'accueil ».</p>
+      <p class="group-title">Légal</p>
+      <div class="list">
+        <button data-click="showScreen|privacy"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg><span>Politique de confidentialité</span><svg class="ic chev" aria-hidden="true"><use href="#i-right"/></svg></button>
+        <button data-click="showScreen|terms"><svg class="ic" aria-hidden="true"><use href="#i-file"/></svg><span>Conditions d'utilisation</span><svg class="ic chev" aria-hidden="true"><use href="#i-right"/></svg></button>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-security">
+      <button class="back" data-click="showScreen|settings"><svg class="ic" aria-hidden="true"><use href="#i-left"/></svg>Réglages</button>
+      <h2 class="screen-title">Code de verrouillage</h2>
+      <p class="hint">Un code à 4 chiffres demandé à chaque ouverture de l'application, et après une minute d'absence. Il protège l'accès depuis cet appareil ; votre compte, lui, est protégé par votre mot de passe.</p>
+      <div id="pinOff">
+        <label class="field-label" for="pinNew">Nouveau code (4 chiffres)</label>
+        <input class="input" id="pinNew" type="password" inputmode="numeric" maxlength="4" autocomplete="off">
+        <label class="field-label" for="pinConfirm">Confirmer le code</label>
+        <input class="input" id="pinConfirm" type="password" inputmode="numeric" maxlength="4" autocomplete="off">
+        <button class="btn" data-click="enablePin">Activer le code</button>
+      </div>
+      <div id="pinOn" hidden>
+        <button class="btn" data-click="lockNow">Verrouiller maintenant</button>
+        <label class="field-label" for="pinCurrent" style="margin-top:20px">Code actuel (pour le désactiver)</label>
+        <input class="input" id="pinCurrent" type="password" inputmode="numeric" maxlength="4" autocomplete="off">
+        <button class="btn ghost" data-click="disablePin">Désactiver le code</button>
+      </div>
+      <p class="hint" id="pinMsg" role="status"></p>
+    </section>
+
+    <section class="screen" id="screen-privacy">
+      <button class="back" data-click="showScreen|settings"><svg class="ic" aria-hidden="true"><use href="#i-left"/></svg>Réglages</button>
+      <h2 class="screen-title">Politique de confidentialité</h2>
+      <p class="legal-date">Version 2026-11 — dernière mise à jour : [à compléter]</p>
+      <h4>1. Qui est responsable de vos données ?</h4><p>Le responsable du traitement est [nom ou structure à compléter], joignable à [adresse e-mail à compléter].</p>
+      <h4>2. Quelles données sont traitées ?</h4><p>Votre adresse e-mail et votre mot de passe (conservé uniquement sous forme chiffrée, jamais lisible), pour créer et protéger votre compte. Les informations que vous saisissez : transactions (montant, type, compte, catégorie, note, date) et objectif d'épargne. Un profil facultatif : prénom, nom, établissement, classe, année scolaire, photo et couleurs. La preuve de votre consentement (date et version de ce texte). Des données techniques de sécurité (adresse IP, journaux de connexion) conservées par les services d'hébergement.</p>
+      <h4>3. Pourquoi ?</h4><p>Pour vous fournir l'application : retrouver vos données sur tous vos appareils et les protéger. Aucune publicité, aucune revente de données, aucun profilage, aucun outil de mesure d'audience.</p>
+      <h4>4. Où sont-elles hébergées ?</h4><p>Base de données et authentification : Supabase, région [à compléter]. Hébergement du site : Vercel. Ces prestataires traitent les données pour le compte du responsable. Selon leur région, les données peuvent être hébergées hors du Sénégal : [à préciser].</p>
+      <h4>5. Combien de temps ?</h4><p>Tant que votre compte existe. Quand vous supprimez votre compte (Réglages, puis Mon compte), vos données sont effacées de la base. Des sauvegardes techniques peuvent subsister pendant [durée à confirmer].</p>
+      <h4>6. Vos droits</h4><p>Vous pouvez consulter vos données dans l'application, les exporter (CSV), les corriger, supprimer des transactions ou supprimer tout votre compte. Pour toute autre demande, écrivez à [adresse e-mail à compléter]. Vous pouvez aussi saisir la Commission de Protection des Données Personnelles (CDP) du Sénégal.</p>
+      <h4>7. Comment vos données sont protégées</h4><p>Connexion chiffrée (HTTPS), mots de passe chiffrés, règles qui limitent l'accès de chaque compte à ses seules données, session limitée dans le temps. Un code de verrouillage facultatif protège l'accès depuis votre appareil.</p>
+      <h4>8. Qui peut accéder à vos données ?</h4><p>Un espace d'administration permet à [nom ou structure à compléter] de gérer le service : il affiche les adresses e-mail, les informations de profil, les dates d'inscription et de connexion et le nombre de transactions de chaque compte, ainsi que des statistiques globales. Il n'affiche jamais les montants, comptes, catégories ni notes de vos transactions. Chaque suspension ou suppression de compte est enregistrée dans un journal. [Précisez ici qui peut accéder à la console de la base de données et dans quel cadre.]</p>
+      <h4>9. Stockage sur votre appareil</h4><p>L'application conserve sur votre appareil, sans traceur ni cookie publicitaire : votre session de connexion (nécessaire au fonctionnement), votre choix de thème et, si vous l'activez, l'empreinte de votre code de verrouillage.</p>
+      <h4>10. Élèves mineurs</h4><p>Les élèves mineurs doivent utiliser l'application avec l'accord d'un parent ou tuteur. Le profil est facultatif : ne renseignez que ce que vous souhaitez.</p>
+      <h4>11. Modifications</h4><p>Ce texte peut évoluer ; la date de dernière mise à jour figure en haut de la page.</p>
+    </section>
+
+    <section class="screen" id="screen-terms">
+      <button class="back" data-click="showScreen|settings"><svg class="ic" aria-hidden="true"><use href="#i-left"/></svg>Réglages</button>
+      <h2 class="screen-title">Conditions d'utilisation</h2>
+      <p class="legal-date">Version 2026-11 — dernière mise à jour : [à compléter]</p>
+      <h4>1. Objet</h4><p>Mes Finances est une application gratuite de suivi personnel de dépenses, recettes et épargne, fournie « telle quelle ».</p>
+      <h4>2. Compte et sécurité</h4><p>Vous fournissez une adresse e-mail valide et choisissez un mot de passe personnel. Gardez-le secret : vous êtes responsable de l'usage de votre compte.</p>
+      <h4>3. Exactitude des informations</h4><p>Les montants dépendent entièrement de votre saisie. L'application ne se connecte à aucun service bancaire ni de mobile money.</p>
+      <h4>4. Pas un conseil financier</h4><p>Cet outil de suivi personnel ne constitue pas un conseil financier, comptable ou juridique.</p>
+      <h4>5. Disponibilité</h4><p>Nous faisons de notre mieux, sans garantir un accès ininterrompu. Exportez régulièrement vos données en CSV.</p>
+      <h4>6. Suppression du compte</h4><p>Vous pouvez supprimer votre compte à tout moment depuis Réglages, puis Mon compte. Un compte peut être suspendu en cas d'usage abusif.</p>
+      <h4>7. Responsabilité</h4><p>L'application est utilisée sous votre responsabilité ; aucune responsabilité n'est acceptée en cas de perte de données ou d'erreur de saisie.</p>
+      <h4>8. Droit applicable</h4><p>Droit de la République du Sénégal.</p>
+      <h4>9. Contact</h4><p>[adresse e-mail à compléter]</p>
+    </section>
+
+  </main>
+
+  <div class="auth" id="auth" hidden role="dialog" aria-modal="true" aria-labelledby="authTitle">
+    <div class="auth-in">
+      <svg class="logo auth-logo" aria-hidden="true"><use href="#i-logo"/></svg>
+      <h2 id="authTitle">Connexion</h2>
+      <p class="auth-sub" id="authSub"></p>
+      <form id="authForm" novalidate>
+        <div data-am="signup"><label class="field-label" for="aFirst">Prénom (facultatif)</label><input class="input" id="aFirst" maxlength="30" autocomplete="given-name"></div>
+        <div data-am="login signup forgot"><label class="field-label" for="aEmail">Adresse e-mail</label><input class="input" id="aEmail" type="email" autocomplete="email" inputmode="email" maxlength="254" autocapitalize="none" spellcheck="false"></div>
+        <div data-am="login signup reset">
+          <label class="field-label" for="aPass" id="aPassLabel">Mot de passe</label>
+          <div class="pw"><input class="input" id="aPass" type="password" autocomplete="current-password" maxlength="72"><button type="button" class="pw-btn" id="pwToggle" data-click="togglePw" aria-pressed="false">Afficher</button></div>
+          <p class="hint" data-am="signup reset">Au moins 10 caractères. N'utilisez pas un mot de passe déjà utilisé ailleurs.</p>
+        </div>
+        <label class="switch-row" data-am="login signup"><input type="checkbox" id="aRemember" checked><span>Rester connecté sur cet appareil</span></label>
+        <label class="switch-row" data-am="signup"><input type="checkbox" id="aTerms"><span>J'ai lu la <a href="confidentialite.html" target="_blank" rel="noopener">politique de confidentialité</a> et les <a href="conditions.html" target="_blank" rel="noopener">conditions d'utilisation</a>.</span></label>
+        <label class="switch-row" data-am="signup"><input type="checkbox" id="aAge"><span>J'ai 18 ans ou plus, ou j'ai l'accord d'un parent ou tuteur.</span></label>
+        <p class="auth-msg" id="authMsg" role="alert"></p>
+        <button class="btn" type="submit" id="authSubmit">Se connecter</button>
+      </form>
+      <p class="hint auth-sent" id="sentText" data-am="sent config"></p>
+      <div class="auth-links">
+        <button type="button" class="linkbtn" data-am="login" data-click="authMode|forgot">Mot de passe oublié ?</button>
+        <button type="button" class="linkbtn" data-am="login" data-click="authMode|signup">Créer un compte</button>
+        <button type="button" class="linkbtn" data-am="signup forgot sent" data-click="authMode|login">J'ai déjà un compte</button>
+        <button type="button" class="linkbtn" data-am="reset" data-click="cancelReset">Annuler</button>
+        <button type="button" class="linkbtn" data-am="login" data-demo data-click="enterDemo">Voir la démo</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" hidden role="status" aria-live="polite"></div>
+
+  <div class="lock" id="lock" hidden role="dialog" aria-modal="true" aria-label="Verrouillage">
+    <div class="lock-in">
+      <svg class="logo lock-logo" aria-hidden="true"><use href="#i-logo"/></svg>
+      <h2 id="lockHi">Bienvenue</h2>
+      <p>Entrez votre code pour continuer</p>
+      <div class="dots" id="lockDots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <p class="lock-err" id="lockErr" role="alert"></p>
+      <div class="keypad" id="keypad"></div>
+      <button class="forgot" data-click="toggleForgot">Code oublié ?</button>
+      <div class="forgot-box" id="forgotBox" hidden>
+        <p>Pour réinitialiser le code, déconnectez-vous : vos données restent dans votre compte et vous les retrouverez en vous reconnectant.</p>
+        <button class="btn-sm" id="wipeBtn" data-click="wipeAll">Me déconnecter et supprimer le code</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="splash" id="splash" role="status" aria-label="Chargement de Mes Finances">
+    <svg class="logo splash-logo" aria-hidden="true"><use href="#i-logo"/></svg>
+    <h1>Mes Finances</h1>
+    <p id="splashSub">Vos dépenses, recettes et épargne</p>
+    <div class="splash-bar" aria-hidden="true"><i></i></div>
+  </div>
+</div>
+<!--APP-END-->
+<script src="config.js"></script>
+<script src="api.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
